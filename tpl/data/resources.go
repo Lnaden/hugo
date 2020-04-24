@@ -53,7 +53,8 @@ func (ns *Namespace) getRemote(cache *filecache.Cache, unmarshal func([]byte) (b
 			}
 
 			if isHTTPError(res) {
-				return nil, errors.Errorf("Failed to retrieve remote file: %s", http.StatusText(res.StatusCode))
+                return nil, ns.deps.Log.ERROR.Printf("Failed to retrieve remote file: %s", http.StatusText(res.StatusCode))
+				// return nil, errors.Errorf("Failed to retrieve remote file: %s", http.StatusText(res.StatusCode))
 			}
 
 			var b []byte
